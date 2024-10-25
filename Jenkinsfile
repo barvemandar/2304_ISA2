@@ -11,7 +11,7 @@ pipeline {
             steps {
                
                 script {
-                    def image = docker.build("isa2-flask:${env.BUILD_ID}")
+                    def image = docker.build("isa2-flask:latest")
                 }
             }
         }
@@ -19,7 +19,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    sh "docker run -d --name 2304 -p 5000:5000 isa2-flask:${env.BUILD_ID}"
+                    sh 'docker run -d --name 2304 -p 8080:8080 isa2-flask'
                 }
             }
         }
