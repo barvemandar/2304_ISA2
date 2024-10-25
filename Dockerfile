@@ -1,18 +1,10 @@
 FROM ubuntu
 
-WORKDIR /opt/app
-
 RUN apt-get update 
-RUN apt-get install -y python3 python3-venv
-RUN apt-get clean
+RUN apt-get install -y python3
+RUN apt-get install -y python3-pip
+RUN apt-get install -y python3-flask
 
-RUN python3 -m venv venv
+COPY . /opt/source-code
 
-RUN ./venv/bin/pip install flask
-
-COPY application.py /opt/app/
-
-ENV FLASK_APP=/opt/app/application.py
-
-CMD ["./venv/bin/flask", "run", "--host=0.0.0.0"]
-
+ENTRYPOINT FLASK_APP=/opt/source-code/app.py flask run
