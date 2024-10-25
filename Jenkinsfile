@@ -16,7 +16,6 @@ pipeline {
                    
                     bat "docker rm -f my-app-container || exit 0"
 
-                    
                     bat "docker run -d --name my-app-container isa2mandar"
                 }
             }
